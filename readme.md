@@ -149,15 +149,22 @@ Despatch Date
 
 | Usecase | Request | Expected Result | Actual Result |
 | ------- | ------- | --------------- | ------------- |
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=1&orderDate=2018-01-01T00:00:00|02/01/2018||
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=2&orderDate=2018-01-01T00:00:00|03/01/2018||
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=1&ProductIds=2&orderDate=2018-01-01T00:00:00|03/01/2018||
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=1&orderDate=2018-01-05T00:00:00|08/01/2018||
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=1&orderDate=2018-01-06T00:00:00|09/01/2018 ||
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=1&orderDate=2018-01-07T00:00:00|09/01/2018 ||
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=9&orderDate=2018-01-05T00:00:00|15/01/2018||
-|Parts 1 & 2|http://localhost:5000/api/DespatchDate?ProductIds=10&orderDate=2018-01-05T00:00:00|22/01/2018||
-
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-01T00:00:00|02/01/2018|{"date":"2018-01-02T00:00:00"}|
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=2&orderDate=2018-01-01T00:00:00|03/01/2018|{"date":"2018-01-03T00:00:00"}|
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=1&ProductIds=2&orderDate=2018-01-01T00:00:00|03/01/2018|{"date":"2018-01-03T00:00:00"}|
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-05T00:00:00|08/01/2018|{"date":"2018-01-08T00:00:00"}|
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-06T00:00:00|09/01/2018|{"date":"2018-01-08T00:00:00"}|
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-07T00:00:00|09/01/2018|{"date":"2018-01-08T00:00:00"}|
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=9&orderDate=2018-01-05T00:00:00|15/01/2018|{"date":"2018-01-11T00:00:00"}|
+|Parts 1 & 2|https://localhost:5001/api/DispatchDate?ProductIds=10&orderDate=2018-01-05T00:00:00|22/01/2018|{"date":"2018-01-18T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-01T00:00:00|02/01/2018|{"date":"2018-01-02T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=2&orderDate=2018-01-01T00:00:00|03/01/2018|{"date":"2018-01-03T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=1&ProductIds=2&orderDate=2018-01-01T00:00:00|03/01/2018|{"date":"2018-01-03T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-05T00:00:00|08/01/2018|{"date":"2018-01-08T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-06T00:00:00|09/01/2018|{"date":"2018-01-09T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=1&orderDate=2018-01-07T00:00:00|09/01/2018|{"date":"2018-01-09T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=9&orderDate=2018-01-05T00:00:00|15/01/2018|{"date":"2018-01-15T00:00:00"}|
+|Parts 3|https://localhost:5001/api/DispatchDate?ProductIds=10&orderDate=2018-01-05T00:00:00|22/01/2018|{"date":"2018-01-22T00:00:00"}|
 
 **Given** an order contains a product from a supplier with a lead time of 1 day  
 **And** the order is place on a Monday - 01/01/2018  
