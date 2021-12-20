@@ -97,8 +97,7 @@ document.
 
 ## Questions
 
-### Q1. What 'code smells' / anti-patterns did you find in the existing 
-	implementation of part 1 & 2?
+### Q1. What 'code smells' / anti-patterns did you find in the existing implementation of part 1 & 2?
 - Repository Pattern applied to make Memory DbContext independent and substitutable
 - Domain Model(PostOffice class) created to handle a business logic
 - Singleton Pattern and Dependency Injection to retain the scope of Repository and Dbcontext
@@ -110,8 +109,7 @@ document.
 
 ### Q3. What further steps would you take to improve the solution given more time?
 
-### Q4. What's a technology that you're excited about and where do you see this 
-    being applicable? (Your answer does not have to be related to this problem)
+### Q4. What's a technology that you're excited about and where do you see this being applicable? (Your answer does not have to be related to this problem)
 
 ## Request and Response Examples
 
