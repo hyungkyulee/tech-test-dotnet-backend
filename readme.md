@@ -98,12 +98,14 @@ document.
 ## Questions
 
 ### Q1. What 'code smells' / anti-patterns did you find in the existing implementation of part 1 & 2?
+```diff
 - Repository Pattern applied to make Memory DbContext independent and substitutable
 - Domain Model(PostOffice class) created to handle a business logic
 - Singleton Pattern and Dependency Injection to retain the scope of Repository and Dbcontext
 - UnitTest updated with a new repository and tested successfully.
 - Data Model was simplified without getter/return annotation.
 - Typo on 'Despatch...' updated
+```
 
 ### Q2. What best practices have you used while implementing your solution?
 
