@@ -52,5 +52,37 @@ namespace Moonpig.PostOffice.Tests
             var date = controller.Get(new List<int>() { 3 }, new DateTime(2018, 1, 25));
             date.Date.ShouldBe(new DateTime(2018, 1, 25).Date.AddDays(4));
         }
+
+        [Fact]
+        public void LeadTimeIsNotCountedOverSaturday()
+        {
+            var controer = new DispatchDateController(_supplierRepository);
+            var date = controer.Get(new List<int>() { 1 }, new DateTime(2018, 1, 6));
+            date.Date.ShouldBe(new DateTime(2018, 1, 6).Date.AddDays(3));
+        }
+        
+        [Fact]
+        public void LeadTimeIsNotCountedOverSunday()
+        {
+            var controer = new DispatchDateController(_supplierRepository);
+            var date = controer.Get(new List<int>() { 1 }, new DateTime(2018, 1, 7));
+            date.Date.ShouldBe(new DateTime(2018, 1, 7).Date.AddDays(2));
+        }
+        
+        [Fact]
+        public void SixDaysOfLeadTimeOverMultipleWeeks()
+        {
+            var controer = new DispatchDateController(_supplierRepository);
+            var date = controer.Get(new List<int>() { 9 }, new DateTime(2018, 1, 5));
+            date.Date.ShouldBe(new DateTime(2018, 1, 5).Date.AddDays(10));
+        }
+        
+        [Fact]
+        public void ElevenDaysOfLeadTimeOverMultipleWeeks()
+        {
+            var controer = new DispatchDateController(_supplierRepository);
+            var date = controer.Get(new List<int>() { 10 }, new DateTime(2018, 1, 5));
+            date.Date.ShouldBe(new DateTime(2018, 1, 5).Date.AddDays(17));
+        }
     }
 }
