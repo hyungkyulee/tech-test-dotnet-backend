@@ -15,40 +15,45 @@ namespace Moonpig.PostOffice.Api.Models.Domains
                 .Select(s => s.LeadTime)
                 .Max();
 
-            return CalculateDispatchDate(orderDate, maxBusinessLeadTime);
-        }
-
-        private DateTime CalculateDispatchDate(DateTime orderDate, int businessLeadTime)
-        {
-            var businessDays = 0;
-            var dispatchDate = orderDate;
-            while (businessDays++ < businessLeadTime)
-            {
-                dispatchDate = MoveToNextBusinessDate(dispatchDate);
-                Console.WriteLine($"count: {businessDays}, updated dispatchDate: {dispatchDate}");
-            }
-
+            var dispatchDate = orderDate.AddDays(GetActualLeadTime(orderDate, maxBusinessLeadTime));
             return dispatchDate;
         }
-        
-        private DateTime MoveToNextBusinessDate(DateTime orderDate)
+
+        private static int GetActualLeadTime(DateTime orderDate, int businessLeadTime)
         {
-            var startWorkingDate = orderDate.DayOfWeek switch
+            var actualDays = 0;
+            while (businessLeadTime-- > 0)
             {
-                DayOfWeek.Saturday => orderDate.AddDays(2),
-                DayOfWeek.Sunday => orderDate.AddDays(1),
-                _ => orderDate
-            };
-            
-            var nextWorkingDate = startWorkingDate.AddDays(1); 
-            return nextWorkingDate.DayOfWeek switch
-            {
-                DayOfWeek.Saturday => nextWorkingDate.AddDays(2),
-                DayOfWeek.Sunday => nextWorkingDate.AddDays(1),
-                _ => nextWorkingDate
-            };
+                switch (orderDate.DayOfWeek)
+                {
+                    case DayOfWeek.Saturday:
+                        actualDays += 3;
+                        break;
+                    case DayOfWeek.Sunday:
+                        actualDays += 2;
+                        break;
+                    default:
+                    {
+                        actualDays += 1;
+                        switch (orderDate.AddDays(actualDays).DayOfWeek)
+                        {
+                            case DayOfWeek.Saturday:
+                                actualDays += 2;
+                                break;
+                            case DayOfWeek.Sunday:
+                                actualDays += 1;
+                                break;
+                        }
+                        break;
+                    }
+                }
+
+                Console.WriteLine($"count: {actualDays}");
+            }
+
+            return actualDays;
         }
-        
+
         public PostOffice(IEnumerable<Supplier> suppliers)
         {
             _suppliers = suppliers;

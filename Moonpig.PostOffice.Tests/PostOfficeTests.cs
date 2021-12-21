@@ -56,33 +56,61 @@ namespace Moonpig.PostOffice.Tests
         [Fact]
         public void LeadTimeIsNotCountedOverSaturday()
         {
-            var controer = new DispatchDateController(_supplierRepository);
-            var date = controer.Get(new List<int>() { 1 }, new DateTime(2018, 1, 6));
-            date.Date.ShouldBe(new DateTime(2018, 1, 6).Date.AddDays(3));
+            // arrange
+            var controller = new DispatchDateController(_supplierRepository);
+            var orderDate = new DateTime(2018, 1, 6);
+            var expectedDispatchDate = orderDate.AddDays(3);
+            
+            // act
+            var response = controller.Get(new List<int>() { 1 }, orderDate);
+            
+            // assert
+            response.Date.ShouldBe(expectedDispatchDate);
         }
         
         [Fact]
         public void LeadTimeIsNotCountedOverSunday()
         {
-            var controer = new DispatchDateController(_supplierRepository);
-            var date = controer.Get(new List<int>() { 1 }, new DateTime(2018, 1, 7));
-            date.Date.ShouldBe(new DateTime(2018, 1, 7).Date.AddDays(2));
+            // arrange
+            var controller = new DispatchDateController(_supplierRepository);
+            var orderDate = new DateTime(2018, 1, 7);
+            var expectedDispatchDate = orderDate.AddDays(2);
+            
+            // act
+            var response = controller.Get(new List<int>() { 1 }, orderDate);
+            
+            // assert
+            response.Date.ShouldBe(expectedDispatchDate);
         }
         
         [Fact]
         public void SixDaysOfLeadTimeOverMultipleWeeks()
         {
-            var controer = new DispatchDateController(_supplierRepository);
-            var date = controer.Get(new List<int>() { 9 }, new DateTime(2018, 1, 5));
-            date.Date.ShouldBe(new DateTime(2018, 1, 5).Date.AddDays(10));
+            // arrange
+            var controller = new DispatchDateController(_supplierRepository);
+            var orderDate = new DateTime(2018, 1, 5);
+            var expectedDispatchDate = orderDate.AddDays(10);
+            
+            // act
+            var response = controller.Get(new List<int>() { 9 }, orderDate);
+            
+            // assert
+            response.Date.ShouldBe(expectedDispatchDate);
         }
         
         [Fact]
         public void ElevenDaysOfLeadTimeOverMultipleWeeks()
         {
-            var controer = new DispatchDateController(_supplierRepository);
-            var date = controer.Get(new List<int>() { 10 }, new DateTime(2018, 1, 5));
-            date.Date.ShouldBe(new DateTime(2018, 1, 5).Date.AddDays(17));
+            // arrange
+            var controller = new DispatchDateController(_supplierRepository);
+            var orderDate = new DateTime(2018, 1, 5);
+            var expectedDispatchDate = orderDate.AddDays(17);
+            
+            // act
+            var response = controller.Get(new List<int>() { 10 }, orderDate);
+            
+            // assert
+            response.Date.ShouldBe(expectedDispatchDate);
         }
     }
 }
