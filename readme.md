@@ -108,10 +108,25 @@ document.
 ```
 
 ### Q2. What best practices have you used while implementing your solution?
+```diff
+- Thanks to a Domain Model (‘PostOffice’) approach, I can only focus on the Domain Model to apply for the business(service) logic of Part 3 implementation. 
+- Also, I have created a set of failed test cases from the requirements to deal with weekends and multiple weeks. It’s followed by a pass code of implementation, and I refactor this again. 
+- When I refactor the Part 3 implementation, I changed my first trial of the pass code which is directly dealing with a low-level dependency to check a next-date one-by-one, into an information hiding approach with the ‘GetAcualLeadTime’ method. 
+- Thus, the ‘GetDispatchDate’ method is just to get a calculated days and to add this value on ‘orderDate’. This will be beneficial later when we need to change any business logic to calculate lead-time.
+```
 
 ### Q3. What further steps would you take to improve the solution given more time?
+```diff
+- If I have more time, it will be able to consider a bank holiday or Moonpig’s own holiday such as Moonpig’s day or year-end holiday, to add them up to a non-business days’ category.
+- Also, an actual cloud database (e.g. dynamoDB or cosmosDB, etc) can be replaced with the repository which has dependency injection with a memory DbContext currently. 
+- Finally, it can be migrated on a serverless framework linked with AWS lambda (or Azure function) to trigger the API call; and can be integrated on github action for a CI/CD.
+```
 
 ### Q4. What's a technology that you're excited about and where do you see this being applicable? (Your answer does not have to be related to this problem)
+```diff
+- Due to the rapidly evolving software and cloud technology, many micro-services approach is available easily and cheaply. I’m excited to build up real-life solutions by a combination of modern tech-stacks. Especially, I would like to learn and contribute on the payment system regarding how Moonpig is formulating this complicated and mission-critical needs in e-commerce industry. If Moonpig is taking into account a single platform approach to both of front-end and back-end solutions with typescript, I would like to participate in the project of a typescript-based back-end app rather than dotnet-based one.
+- Furthermore, AI or machine learning technology is another point I’m interested in, to prevent from a fraud transaction; and to improve an error-recovering system.
+```
 
 ## Request and Response Examples
 
