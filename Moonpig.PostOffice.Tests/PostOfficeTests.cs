@@ -50,7 +50,7 @@ namespace Moonpig.PostOffice.Tests
         {
             var controller = new DispatchDateController(_supplierRepository);
             var date = controller.Get(new List<int>() { 3 }, new DateTime(2018, 1, 25));
-            date.Date.ShouldBe(new DateTime(2018, 1, 25).Date.AddDays(4));
+            date.Date.ShouldBe(new DateTime(2018, 1, 25).Date.AddDays(5));
         }
 
         [Fact]
