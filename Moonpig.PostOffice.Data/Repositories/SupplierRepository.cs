@@ -28,5 +28,9 @@ namespace Moonpig.PostOffice.Data.Repositories
 
             return suppliers;
         }
+        public IEnumerable<Supplier> GetSuppliers(IEnumerable<Product> products)
+        {
+            return products?.Select(p => _dbContext.Suppliers.SingleOrDefault(x => x.SupplierId == p.SupplierId));
+        }
     }
 }

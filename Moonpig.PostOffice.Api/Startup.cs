@@ -1,4 +1,5 @@
-﻿using Moonpig.PostOffice.Data;
+﻿using Moonpig.PostOffice.Api.Services;
+using Moonpig.PostOffice.Data;
 using Moonpig.PostOffice.Data.Repositories;
 
 namespace Moonpig.PostOffice.Api
@@ -23,6 +24,8 @@ namespace Moonpig.PostOffice.Api
         {
             services.AddSingleton<IDbContext, DbContext>();
             services.AddSingleton<ISupplierRepository, SupplierRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<SupplierService>();
             services.AddControllers();
         }
 
